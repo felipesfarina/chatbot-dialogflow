@@ -12,6 +12,7 @@ app.use(express.json());
 
 app.use("/produto", rotaProduto);
 app.use("/dialogflow", rotaDialogflow);
+app.use("/webhook", rotaDialogflow);
 
 app.listen(porta, host, () => {
   console.log(`Servidor rodando em http://${host}:${porta}`);
