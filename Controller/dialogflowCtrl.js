@@ -1,5 +1,9 @@
 import Produto from "../Model/produto.js";
-import { montarCatalogo } from "../DialogFlow/funcoes.js";
+import {
+  montarCatalogo,
+  montarCards,
+  montarRichContent,
+} from "../DialogFlow/funcoes.js";
 
 export default class DialogflowCtrl {
   async processar(req, resp) {
@@ -17,6 +21,8 @@ export default class DialogflowCtrl {
         const produto = new Produto();
         const listaProdutos = await produto.consultar();
         const texto = montarCatalogo(listaProdutos);
+        const cards = montarCards(listaProdutos);
+        const richContent = montarRichContent(listaProdutos);
 
         resp.status(200).json({
           fulfillmentText: texto,
@@ -26,6 +32,8 @@ export default class DialogflowCtrl {
                 text: [texto],
               },
             },
+            ...cards,
+            ...richContent,
           ],
         });
         return;
@@ -35,6 +43,7 @@ export default class DialogflowCtrl {
         fulfillmentText: "Tudo certo. Em que mais posso ajudar?",
       });
     } catch (erro) {
+      console.error("Erro ao consultar catalogo:", erro);
       resp.status(500).json({
         fulfillmentText:
           "Desculpe, tivemos um problema ao consultar o catalogo.",
