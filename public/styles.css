@@ -1,0 +1,103 @@
+:root {
+  --surface: #fff8f0;
+  --surface-soft: #f3ede5;
+  --surface-strong: #e7e2da;
+  --ink: #1d1b17;
+  --muted: #55433c;
+  --accent: #974725;
+  --accent-soft: #d97b54;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffffff 0%, var(--surface) 70%);
+  color: var(--ink);
+  font-family: "Hanken Grotesk", sans-serif;
+}
+
+.layout {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  gap: 32px;
+  padding: 48px 20px 64px;
+}
+
+.brand {
+  max-width: 520px;
+  text-align: center;
+  padding: 32px 36px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--surface-soft) 100%);
+  box-shadow: 0 24px 60px rgba(45, 41, 38, 0.1);
+}
+
+.brand__tag {
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.brand__title {
+  margin: 0 0 12px;
+  font-family: "Libre Caslon Text", serif;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.brand__text {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.chat-shell {
+  width: min(92vw, 440px);
+  height: min(76vh, 680px);
+  background: var(--surface-soft);
+  border-radius: 28px;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(45, 41, 38, 0.12);
+  display: grid;
+  place-items: stretch;
+}
+
+df-messenger {
+  width: 100%;
+  height: 100%;
+  position: static;
+  --df-messenger-button-titlebar-color: var(--accent);
+  --df-messenger-button-titlebar-font-color: #ffffff;
+  --df-messenger-chat-background-color: #fffaf6;
+  --df-messenger-font-color: var(--ink);
+  --df-messenger-user-message: var(--accent);
+  --df-messenger-user-message-font-color: #ffffff;
+  --df-messenger-bot-message: var(--surface-strong);
+  --df-messenger-minimized-chat-close-icon-color: #ffffff;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    gap: 20px;
+    padding: 28px 16px 40px;
+  }
+
+  .brand {
+    padding: 24px;
+  }
+
+  .brand__title {
+    font-size: 32px;
+  }
+
+  .chat-shell {
+    height: 70vh;
+  }
+}

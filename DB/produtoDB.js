@@ -25,4 +25,24 @@ export default class ProdutoDB {
 
     return listaProdutos;
   }
+
+  async consultarPorNome(nome) {
+    const conexao = await obterConexao();
+    const sql =
+      "SELECT * FROM produto WHERE LOWER(nome) LIKE CONCAT('%', ?, '%') LIMIT 1";
+    const [resultados] = await conexao.query(sql, [nome.toLowerCase()]);
+
+    if (resultados.length === 0) {
+      return null;
+    }
+
+    const resultado = resultados[0];
+    return new Produto(
+      resultado.codigo,
+      resultado.nome,
+      resultado.descricao,
+      resultado.preco,
+      resultado.imagem
+    );
+  }
 }

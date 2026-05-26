@@ -73,4 +73,9 @@ export default class Produto {
     const produtoDB = new ProdutoDB();
     return await produtoDB.consultar();
   }
+
+  async consultarPorNome(nome) {
+    const produtoDB = new ProdutoDB();
+    return await produtoDB.consultarPorNome(nome);
+  }
 }

@@ -79,3 +79,18 @@ export function montarRichContent(listaProdutos) {
     },
   ];
 }
+
+export function montarResumoPedido(itensPedido) {
+  if (!Array.isArray(itensPedido) || itensPedido.length === 0) {
+    return "Nenhum item no pedido.";
+  }
+
+  const linhas = itensPedido.map((item) => {
+    const preco = formatarPreco(item.preco);
+    const tamanho = item.tamanho ? ` tam ${item.tamanho}` : "";
+    const cor = item.cor ? ` cor ${item.cor}` : "";
+    return `${item.quantidade}x ${item.nome}${tamanho}${cor} - ${preco}`;
+  });
+
+  return `Resumo do pedido: ${linhas.join("; ")}.`;
+}
