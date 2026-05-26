@@ -5,7 +5,7 @@ import rotaDialogflow from "./routes/rotaDialogflow.js";
 
 dotenv.config();
 
-const porta = 3000;
+const porta = 3001;
 const host = "0.0.0.0";
 const app = express();
 app.use(express.json());
